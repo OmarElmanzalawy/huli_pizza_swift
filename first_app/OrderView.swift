@@ -12,24 +12,32 @@ struct OrderView: View {
     var body: some View {
         VStack{
             
-            Label{
-                Text(59.99,format: .currency(code: "USD"))
-            }
-        icon:{
-            Image(systemName: orders.isEmpty ? "cart" : "cart.circle.fill")
-        }
             HStack {
                 
                 Text("Order Pizza").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 Spacer()
+                Label{
+                    Text(59.99,format: .currency(code: "USD"))
+                }
+            icon:{
+                Image(systemName: orders.isEmpty ? "cart" : "cart.circle.fill")
             }
+            }
+            .padding()
+            .background(.ultraThinMaterial)
+            
             ScrollView{
                 ForEach(orders,id: \.self){
                     order in OrderRowView(order: order)
+                        .padding([.leading,.trailing],7)
+                        .padding(.bottom, 5)
                 }
             }
         }
+        .padding()
+        .background(Color("Surf"))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
 
