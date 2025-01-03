@@ -8,39 +8,54 @@
 import SwiftUI
 
 struct OrderView: View {
-    var orders:[Int]
+    @ObservedObject var orders:OrderModel
     var body: some View {
-        VStack{
-            
-            HStack {
+        VStack {
+            ZStack (alignment: .top) {
                 
-                Text("Order Pizza").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                Spacer()
-                Label{
-                    Text(59.99,format: .currency(code: "USD"))
+
+                
+                ScrollView{
+                    ForEach($orders.orderItems){order in
+                        OrderRowView(order: order)
+//                        Text(order.item.name)
+                            .padding(4)
+                            .background(.regularMaterial , in: RoundedRectangle(cornerRadius: 10))
+                            .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                            .padding(.bottom, 5)
+                            .padding([.leading,.trailing],7)
+                            
+                            
+                    }
                 }
-            icon:{
-                Image(systemName: orders.isEmpty ? "cart" : "cart.circle.fill")
-            }
+                .padding(.top,65)
+                HStack {
+                    
+                    Text("Order Pizza").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    Spacer()
+                    Label{
+                        Text(orders.orderTotal,format: .currency(code: "USD"))
+                    }
+                icon:{
+                    Image(systemName: orders.orderItems.isEmpty ? "cart" : "cart.circle.fill")
+                }
+                }
+                .padding()
+                .background(.ultraThinMaterial)
             }
             .padding()
-            .background(.ultraThinMaterial)
-            
-            ScrollView{
-                ForEach(orders,id: \.self){
-                    order in OrderRowView(order: order)
-                        .padding([.leading,.trailing],7)
-                        .padding(.bottom, 5)
-                }
+            Button("Delete Order"){
+                if !orders.orderItems.isEmpty{orders.removeLast()}
             }
+            .padding(5)
+            .background(.regularMaterial,in: Capsule())
+            .padding(7)
         }
-        .padding()
         .background(Color("Surf"))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
 
 #Preview {
-    OrderView(orders: [1,2,3,4])
+    OrderView(orders: OrderModel())
 }

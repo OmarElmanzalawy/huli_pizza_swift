@@ -8,29 +8,34 @@
 import SwiftUI
 
 struct ContentView: View { 
-    var orders: [Int] = [1,2,3,4,52]
-    var showOrders: Bool = true
+    var menu: [MenuItem]
+    @StateObject  var orders: OrderModel = OrderModel()
+    @State private var showOrders: Bool = false
+    @State private var selectedItem: MenuItem = noMenuItem
     var body: some View {
         VStack {
             HeaderView()
                 .shadow(radius: 5)
+            StatusBarView(orders: orders, showOrders: $showOrders)
+            
             if showOrders{
                 OrderView(orders: orders)
                 
             }
             else{
-                MenuItemView()
+                MenuItemView(item: $selectedItem,orders: orders)
                     .padding(5)
                     .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 10))
-                MenuView()
+                MenuView(menu: menu,selectedItem: $selectedItem)
             }
             Spacer()
         }
         .padding()
         .background(.linearGradient(colors: [Color("Surf"),Color("Sky"),], startPoint: .topLeading, endPoint: .bottom))
+        .environmentObject(orders)
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(menu: MenuModel().menu)
 }

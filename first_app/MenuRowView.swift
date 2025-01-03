@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct MenuRowView: View {
-    let item:Int
+    let item:MenuItem
     var body: some View {
         HStack(alignment: .top,spacing: 15,
                        content: {
-            if let image = UIImage(named: "\(item)_sm"){
+            if let image = UIImage(named: "\(item.id)_sm"){
                 Image(uiImage: image)
                     .padding(.trailing,-20 )
                     .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
@@ -23,13 +23,17 @@ struct MenuRowView: View {
             }
             VStack (alignment: .leading)
             {
-                Text("Margherita")
-                RatingsView(rating: 4)
+                HStack {
+                    Text(item.name)
+                    Spacer()
+                    Text(item.price,format: .currency(code: "USD"))
+                }
+                RatingsView(rating: item.rating)
             }
         })
     }
 }
 
 #Preview {
-    MenuRowView(item: 1)
+    MenuRowView(item: testMenuItem)
 }
