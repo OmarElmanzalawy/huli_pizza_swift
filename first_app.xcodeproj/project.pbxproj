@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0426E8732D28249500C8C3E6 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0426E8722D28249500C8C3E6 /* StatusBarView.swift */; };
+		0426E8752D282BA300C8C3E6 /* OrderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0426E8742D282BA300C8C3E6 /* OrderItemView.swift */; };
 		04B428642D19AAD900745986 /* first_appApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B428632D19AAD900745986 /* first_appApp.swift */; };
 		04B428662D19AAD900745986 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B428652D19AAD900745986 /* ContentView.swift */; };
 		04B428682D19AAD900745986 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B428672D19AAD900745986 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		0426E8722D28249500C8C3E6 /* StatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
+		0426E8742D282BA300C8C3E6 /* OrderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemView.swift; sourceTree = "<group>"; };
 		04B428602D19AAD900745986 /* first_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = first_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B428632D19AAD900745986 /* first_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = first_appApp.swift; sourceTree = "<group>"; };
 		04B428652D19AAD900745986 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			children = (
 				04B428632D19AAD900745986 /* first_appApp.swift */,
 				04B428652D19AAD900745986 /* ContentView.swift */,
+				0426E8742D282BA300C8C3E6 /* OrderItemView.swift */,
 				04B428712D19C32100745986 /* OrderView.swift */,
 				0426E8722D28249500C8C3E6 /* StatusBarView.swift */,
 				04B428732D19C34300745986 /* MenuView.swift */,
@@ -188,6 +191,7 @@
 				04B428642D19AAD900745986 /* first_appApp.swift in Sources */,
 				04B4287E2D19CBCB00745986 /* RatingsView.swift in Sources */,
 				04DAAB7D2D21AC3500B527AC /* OrderItem.swift in Sources */,
+				0426E8752D282BA300C8C3E6 /* OrderItemView.swift in Sources */,
 				04B428782D19C3C900745986 /* MenuRowView.swift in Sources */,
 				04B4287A2D19C3E000745986 /* OrderRowView.swift in Sources */,
 				04DAAB7C2D21AC3500B527AC /* MenuModel.swift in Sources */,
