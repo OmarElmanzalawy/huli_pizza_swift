@@ -11,40 +11,26 @@ struct OrderView: View {
     @ObservedObject var orders:OrderModel
     var body: some View {
         VStack {
-            ZStack (alignment: .top) {
-                
-
-                
-                ScrollView{
-                    ForEach($orders.orderItems){order in
-                        OrderRowView(order: order)
-//                        Text(order.item.name)
-                            .padding(4)
-                            .background(.regularMaterial , in: RoundedRectangle(cornerRadius: 10))
-                            .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                            .padding(.bottom, 5)
-                            .padding([.leading,.trailing],7)
-                            
-                            
+                NavigationStack{
+                    List($orders.orderItems){$order in
+                        NavigationLink(value: order){
+                            OrderRowView(order: $order)
+                            //                        Text(order.item.name)
+                                .padding(4)
+                                .background(.regularMaterial , in: RoundedRectangle(cornerRadius: 10))
+                                .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                                .padding(.bottom, 5)
+                                .padding([.leading,.trailing],7)
+                        }.navigationDestination(for: OrderItem.self) { order in
+                            OrderDetailView(orderItem: $order, presentSheet: .constant(false), newOrder: .constant(false))
+                        }.navigationTitle("Your Order")
                     }
                 }
                 .padding(.top,65)
-                HStack {
-                    
-                    Text("Order Pizza").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                    Spacer()
-                    Label{
-                        Text(orders.orderTotal,format: .currency(code: "USD"))
-                    }
-                icon:{
-                    Image(systemName: orders.orderItems.isEmpty ? "cart" : "cart.circle.fill")
-                }
-                }
-                .padding()
+               
+//                .padding()
                 .background(.ultraThinMaterial)
-            }
-            .padding()
+//            .padding()
             Button("Delete Order"){
                 if !orders.orderItems.isEmpty{orders.removeLast()}
             }
@@ -53,6 +39,8 @@ struct OrderView: View {
             .padding(7)
         }
         .background(Color("Surf"))
+        .padding(.bottom)
+        .background(.ultraThinMaterial)
     }
 }
 

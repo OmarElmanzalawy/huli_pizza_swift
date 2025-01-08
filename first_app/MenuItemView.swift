@@ -11,6 +11,9 @@ struct MenuItemView: View {
     @State private var addedItem: [String] = []
     @Binding var item: MenuItem
     @ObservedObject var orders: OrderModel
+    @State private var showAlert: Bool = false
+    @State private var newOrder: Bool = true
+    @State private var order = noOrderItem
     var body: some View {
         VStack {
             HStack {
@@ -36,7 +39,6 @@ struct MenuItemView: View {
                         .scaledToFit()
                         .rotationEffect(.degrees(180))
                 }
-                
             }
             .background(.linearGradient(colors: [Color("Surf"),Color("Sky").opacity(0.1)], startPoint: .leading, endPoint: .trailing), in:Capsule())
             .shadow(color:.teal,radius: 5,x:8,y:8)
@@ -47,8 +49,8 @@ struct MenuItemView: View {
                         .font(.custom("Georgia",size: 18,relativeTo: .body))
                 }
                 Button{
-                    addedItem.append("1")
-                    orders.addOrder(item, quantity: 1)
+                    order = OrderItem(id: -999, item: item)
+                    showAlert = true
                     
                 }
             label: {
@@ -57,9 +59,7 @@ struct MenuItemView: View {
                     Text(item.price, format: .currency(code: "USD"))
                         Image(systemName: addedItem.count > 0 ?"cart.fill.badge.plus"  :  "cart.badge.plus")
                     Spacer()
-                        
                     }
-                    
                 }
             .disabled(item.id < 0)
                 .padding(10)
@@ -67,6 +67,22 @@ struct MenuItemView: View {
                 .foregroundStyle(.white)
                 .shadow(radius: 8)
                 .padding(8)
+//                .alert("Buy a \(item.name)",isPresented: $showAlert){
+//                    Button("Make it a double!"){
+//                        addedItem.append(item.name)
+//                        orders.addOrder(item, quantity: 2)
+//                    }
+//                    Button("Buy"){
+//                        addedItem.append(item.name)
+//                        orders.addOrder(item, quantity: 1)
+//                    }
+//                    Button("Cancel",role: .cancel){}
+//                }
+                .sheet(isPresented: $showAlert){
+//                    addedItem = true
+                    OrderDetailView(orderItem: $order, presentSheet: $showAlert, newOrder: $newOrder)
+                }
+                
             }
         }
     }

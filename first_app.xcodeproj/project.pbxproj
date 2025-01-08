@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040A45652D2E17B300A92E08 /* OrderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A45642D2E17B300A92E08 /* OrderDetailView.swift */; };
 		0426E8732D28249500C8C3E6 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0426E8722D28249500C8C3E6 /* StatusBarView.swift */; };
 		0426E8752D282BA300C8C3E6 /* OrderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0426E8742D282BA300C8C3E6 /* OrderItemView.swift */; };
 		045594F82D2AE06500125415 /* MenuItemTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045594F72D2AE06500125415 /* MenuItemTileView.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040A45642D2E17B300A92E08 /* OrderDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailView.swift; sourceTree = "<group>"; };
 		0426E8722D28249500C8C3E6 /* StatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
 		0426E8742D282BA300C8C3E6 /* OrderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemView.swift; sourceTree = "<group>"; };
 		045594F72D2AE06500125415 /* MenuItemTileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemTileView.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				045594FB2D2AE55100125415 /* FavoriteTileView.swift */,
 				04B428772D19C3C900745986 /* MenuRowView.swift */,
 				04B4287D2D19CBCB00745986 /* RatingsView.swift */,
+				040A45642D2E17B300A92E08 /* OrderDetailView.swift */,
 				04B428792D19C3E000745986 /* OrderRowView.swift */,
 				04B4287B2D19C3F600745986 /* HeaderView.swift */,
 				04DAAB7A2D21AC3500B527AC /* Model Code */,
@@ -208,6 +211,7 @@
 				0426E8732D28249500C8C3E6 /* StatusBarView.swift in Sources */,
 				045594FA2D2AE0A100125415 /* MenuGridView.swift in Sources */,
 				04B428762D19C3A400745986 /* MenuItemView.swift in Sources */,
+				040A45652D2E17B300A92E08 /* OrderDetailView.swift in Sources */,
 				04B4287C2D19C3F600745986 /* HeaderView.swift in Sources */,
 				045594F82D2AE06500125415 /* MenuItemTileView.swift in Sources */,
 				04DAAB7B2D21AC3500B527AC /* MenuItem.swift in Sources */,
