@@ -1,7 +1,7 @@
 # SwiftUI Pizza Ordering App Interface
 
 ## Project Overview  
-This project focuses on building a SwiftUI interface for a pizza restaurant app.
+This project focuses on learning and building a SwiftUI interface for a pizza restaurant app.
 
 ## Course Information  
 **Course Title:** SwiftUI Essential Training  
