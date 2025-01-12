@@ -18,7 +18,9 @@ struct OrderDetailView: View {
     @State private var pizzaCrust:PizzaCrust
     @State private var name:String
     @State private var comments:String
+    @State private var showAlert: Bool = false
     @EnvironmentObject var orders:OrderModel
+    @Environment(\.dismiss) var dismiss
     
     init(orderItem:Binding<OrderItem>,presentSheet:Binding<Bool>,newOrder:Binding<Bool>){
         self._orderItem = orderItem
@@ -38,6 +40,8 @@ struct OrderDetailView: View {
         orderItem.name = name
         orderItem.preferredCrust = pizzaCrust
         orderItem.comments = comments
+        
+       dismiss()
     }
         
     var body: some View {
@@ -102,15 +106,22 @@ struct OrderDetailView: View {
                     .shadow(radius: 1)
             Spacer()
             HStack {
-                Button("Order"){
-                    if newOrder {
-                        orders.addOrder(orderItem: orderItem)
-                    }else{
-                        orders.replaceOrder(id: orderItem.id, with: orderItem)
-                    }
-                    updateOrder()
-                        presentSheet = false
-                    }
+                Button("Update Order"){
+                    showAlert = true
+                }
+                .alert("Are you sure",isPresented: $showAlert){
+                                    Button("Cancel",role: .cancel){}
+                    Button("Update Order"){
+                        if newOrder {
+                            orders.addOrder(orderItem: orderItem)
+                        }else{
+                            orders.replaceOrder(id: orderItem.id, with: orderItem)
+                        }
+                        updateOrder()
+                        showAlert = false
+                        
+                        }
+                                }
                     .padding()
                     .padding([.leading,.trailing])
                     .foregroundColor(.white)
@@ -118,27 +129,29 @@ struct OrderDetailView: View {
                     .font(.title)
                     .padding(.trailing,20)
                     .shadow(radius:7,x:2,y:2)
-                Button("Cancel"){
-                    presentSheet = false
-                }
-                .padding()
-                .padding([.leading,.trailing])
-                .foregroundColor(.white)
-                .background(.red,in: Capsule())
-                .font(.title)
-                .shadow(radius:7,x:2,y:2)
+//                Button("Cancel"){
+//                    presentSheet = false
+//                }
+//                .padding()
+//                .padding([.leading,.trailing])
+//                .foregroundColor(.white)
+//                .background(.red,in: Capsule())
+//                .font(.title)
+//                .shadow(radius:7,x:2,y:2)
             }
         }
         .padding()
         .navigationTitle("Your Order")
-        .background(Color("Surf"))
+        .background(Color("Surf"), in: Rectangle())
         
     }
 }
 
 struct OrderDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderDetailView(orderItem:  .constant(testOrderItem), presentSheet: .constant(true), newOrder: .constant(false)).environmentObject(OrderModel())
+        NavigationStack{
+            OrderDetailView(orderItem:  .constant(testOrderItem), presentSheet: .constant(true), newOrder: .constant(false)).environmentObject(OrderModel())
+        }
     }
 }
 

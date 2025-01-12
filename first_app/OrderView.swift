@@ -9,10 +9,12 @@ import SwiftUI
 
 struct OrderView: View {
     @ObservedObject var orders:OrderModel
+    @State private var presentSheet: Bool = false
     var body: some View {
         VStack {
-                NavigationStack{
-                    List($orders.orderItems){$order in
+            NavigationStack{
+                List{
+                    ForEach($orders.orderItems){$order in
                         NavigationLink(value: order){
                             OrderRowView(order: $order)
                             //                        Text(order.item.name)
@@ -22,10 +24,17 @@ struct OrderView: View {
                                 .padding(.bottom, 5)
                                 .padding([.leading,.trailing],7)
                         }.navigationDestination(for: OrderItem.self) { order in
-                            OrderDetailView(orderItem: $order, presentSheet: .constant(false), newOrder: .constant(false))
+                            OrderDetailView(orderItem: $order, presentSheet: $presentSheet, newOrder: .constant(false))
                         }.navigationTitle("Your Order")
                     }
+                    .onDelete(perform: { indexSet in
+                        orders.orderItems.remove(atOffsets: indexSet)
+                    })
+                    .onMove(perform: { source, destination in
+                        orders.orderItems.move(fromOffsets: source, toOffset: destination)
+                    })
                 }
+            }
                 .padding(.top,65)
                
 //                .padding()

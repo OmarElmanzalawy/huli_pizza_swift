@@ -18,24 +18,28 @@ struct ContentView: View {
     var body: some View {
         TabView{
                 VStack{
+                    HeaderView()
+                        .shadow(radius: 5)
+                  StatusBarView(orders: orders, showOrders: $showOrders,showGridMenu: $showGridMenu)
+                    MenuView2(menu: menu)
+//                    MenuItemView(item: $selectedItem,orders: orders)
+//                        .padding(5)
+//                        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 10))
 //                    
-                    MenuItemView(item: $selectedItem,orders: orders)
-                        .padding(5)
-                        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 10))
-                    if showGridMenu {
-                        MenuGridView(menu: menu,selectedItem: $selectedItem)
-                    }
-                    else{
-                        MenuView(menu: menu,selectedItem: $selectedItem)
-                    }
+//                    if showGridMenu {
+//                        MenuGridView(menu: menu,selectedItem: $selectedItem)
+//                    }
+//                    else{
+//                        MenuView(menu: menu,selectedItem: $selectedItem)
+//                    }
                 }
                 .tabItem {
-                    Label("Order",systemImage: "list.bullet")
+                    Label("Menu",systemImage: "list.bullet")
                 }
             VStack {
                 HeaderView()
                     .shadow(radius: 5)
-                StatusBarView(orders: orders, showOrders: $showOrders,showGridMenu: $showGridMenu)
+//                StatusBarView(orders: orders, showOrders: $showOrders,showGridMenu: $showGridMenu)
                 
 //                if showOrders{
                     
@@ -44,7 +48,7 @@ struct ContentView: View {
                     
             }
             .tabItem {
-                Label("Menu",systemImage: "cart")
+                Label("Order",systemImage: "cart")
             }
             }
             .padding()
